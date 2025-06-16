@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peddy</title>
+
+    <!-- Daisy UI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <header class="container mx-auto text-[#131313]">
+        <div class="navbar bg-base-100 ">
+            <div class="navbar-start">
+                <div class="dropdown">
+                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
+                    </div>
+                    <ul tabindex="0"
+                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        <li><a>Item 1</a></li>
+                        <li>
+                            <a>Parent</a>
+                            <ul class="p-2">
+                                <li><a>Submenu 1</a></li>
+                                <li><a>Submenu 2</a></li>
+                            </ul>
+                        </li>
+                        <li><a>Item 3</a></li>
+                    </ul>
+                </div>
+                <a class="btn btn-ghost text-xl"><img class="mr-2" src="./images/logo.webp" alt=""> Peddy</a>
+            </div>
+            <div class="navbar-center hidden lg:flex">
+                <ul class="menu menu-horizontal px-1">
+                    <li><a>Home</a></li>
+                    <li><a>Shop</a></li>
+                    <li><a>Contact</a></li>
+
+
+                </ul>
+            </div>
+            <div class="navbar-end">
+                <a class="btn rounded-full border-[#0E7A81] bg-transparent-transparent"><img class="w-5 "
+                        src="./images/user.png" alt=""></a>
+            </div>
+        </div>
+    </header>
+    <main class="container mx-auto text-[#131313]">
+        <!-- Hero Part -->
+        <section class="mt-14 space-y-8 text-center">
+            <h3 class="font-bold text-xl sm:text-2xl">Bringing Families Together ❤️‍🔥</h3>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">Your Path to Adoption <br> Starts Here
+            </h1>
+            <p class="text-base ">It is a long established fact that a reader will be distracted by the readable content
+                of a page when looking <br> at its layout. The point of using Lorem Ipsum is that it has a.</p>
+            <button class="text-white text-xl btn rounded-xl bg-[#0E7A81]">View More</button>
+
+            <img class="mx-auto" src="./images/pet.webp" alt="">
+        </section>
+        <!-- Adopt  -->
+        <section class="mt-14 space-y-8 text-center">
+            <h2 class="text-4xl">Adopt Your Best Friend</h2>
+            <p class="text-base">It is a long established fact that a reader will be distracted by the readable content
+                of a <br> page
+                when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+
+            <!-- Category -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+                <div
+                    class="flex items-center space-x-4 px-20 py-10 bg-transparent btn border-[#0E7A81] hover:bg-[#0e79813e] hover:border-[#0E7A81] hover:rounded-full ">
+                    <img class="w-10" src="./images/shiba 1.png" alt="Dogs">
+                    <p class="text-xl font-bold">Dogs</p>
+                </div>
+
+                <div
+                    class="flex items-center space-x-4 px-20 py-10 bg-transparent btn border-[#0E7A81] hover:bg-[#0e79813e] hover:border-[#0E7A81] hover:rounded-full ">
+                    <img class="w-10" src="./images/cat 1.png" alt="Dogs">
+                    <p class="text-xl font-bold">Dogs</p>
+                </div>
+
+                <div
+                    class="flex items-center space-x-4 px-20 py-10 bg-transparent btn border-[#0E7A81] hover:bg-[#0e79813e] hover:border-[#0E7A81] hover:rounded-full ">
+                    <img class="w-10" src="./images/rabbit 1.png" alt="Dogs">
+                    <p class="text-xl font-bold">Dogs</p>
+                </div>
+
+                <div
+                    class="flex items-center space-x-4 px-20 py-10 bg-transparent btn border-[#0E7A81] hover:bg-[#0e79813e] hover:border-[#0E7A81] hover:rounded-full ">
+                    <img class="w-10" src="./images/Group.png" alt="Dogs">
+                    <p class="text-xl font-bold">Dogs</p>
+                </div>
+
+            </div>
+
+            <div>
+                <div class="flex justify-between">
+                    <h3 class="text-2xl font-bold">Best Deal For you</h3>
+                    <button class="btn bg-[#0E7A81] text-white rounded-xl">Sort by Price</button>
+
+                </div>
+
+                <div>
+                    <div class="grid lg:grid-cols-3 sm:grid-cols-2 gap-8"></div>
+                    <div class="grid lg:grid-cols-2 gap-8"></div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#131313] ">
+        <div class="container mx-auto py-24">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-16">
+                <div class="space-y-6 mx-auto">
+                    <a class="btn btn-ghost text-2xl text-white"><img class="mr-2" src="./images/logo.webp" alt="">
+                        Peddy</a>
+                    <p class="text-base text-white">Location: av. Washington 165, NY CA 54003 <br>
+                        Phone: +31 85 964 47 25 <br>
+                        Email: info@yourdomain.com <br>
+                        Openings hours: 9.00 AM - 5.00 PM</p>
+
+                    <div class="flex space-x-8 ">
+                        <a href=""><img src="./images/facebook.png" alt=""></a>
+                        <a href=""><img src="./images/x.png" alt=""></a>
+                        <a href=""><img src="./images/youtube.png" alt=""></a>
+                        <a href=""><img src="./images/insta.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="space-y-8 text-center md:text-left">
+                    <h3 class="text-white text-3xl font-bold">Useful Links</h3>
+                    <div class="space-y-4  flex flex-col">
+                        <a href="" class="text-xl text-[#ffffffaa]">Home</a>
+                        <a href="" class="text-xl text-[#ffffffaa]">About Us</a>
+                        <a href="" class="text-xl text-[#ffffffaa]">Animals</a>
+                        <a href="" class="text-xl text-[#ffffffaa]">Foundation</a>
+                        <a href="" class="text-xl text-[#ffffffaa]">Contact</a>
+                    </div>
+
+
+                </div>
+                <div class="">
+                    <h3 class="text-white text-2xl text-center md:text-left">Drop a Message </h3>
+                    <div class="space-y-8 mt-8 flex flex-col w-2/3  mx-auto md:mx-0">
+                        <input type="text" placeholder="Enter your email"
+                            class="text-[#ffffffd2] px-8 py-4 rounded-2xl border-0 bg-[#ffffff12] text-xl text-">
+                        <button class="btn border-0 p-8 text-2xl bg-[#0E7A81] text-white rounded-xl">Sort by
+                            Price</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div>
+
+    </footer>
+
+    <!-- Script -->
+</body>
+
+</html>
