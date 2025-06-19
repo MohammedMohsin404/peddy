@@ -29,82 +29,129 @@ console.log("Js Connected");
 
 // Description: Fetches data of pets under a specific category, in this case, dogs. This can be used to filter pets based on their category.
 
+const skeleton = document.querySelector("#skeleton");
+const petContainer = document.querySelector("#pets");
+
+skeleton.classList.remove("hidden");
+
+const loadAllPets = () => {
+  setTimeout(() => {
+    skeleton.classList.add("hidden");
+    fetch("https://openapi.programming-hero.com/api/peddy/pets")
+      .then((res) => res.json())
+      .then((data) => showAllPets(data.pets))
+      .catch((error) => console.log(error));
+  }, 2000);
+};
 const loadCategories = () => {
   fetch("https://openapi.programming-hero.com/api/peddy/categories")
     .then((res) => res.json())
-    .then((data) => showCategories(data.categories))
+    .then((data) => {
+      showCategories(data.categories);
+    })
     .catch((error) => console.log(error));
+};
+
+const loadPetsByCategory = (categoryName) => {
+  petContainer.innerHTML = ` `;
+  skeleton.classList.remove("hidden");
+
+  setTimeout(() => {
+    petContainer.innerHTML = ` `;
+    skeleton.classList.add("hidden");
+    fetch(
+      `https://openapi.programming-hero.com/api/peddy/category/${categoryName}`
+    )
+      .then((res) => res.json())
+      .then((data) => showAllPets(data.data))
+      .catch((error) => console.log(error));
+  }, 2000);
+};
+
+function buttonCategory(categoryName) {
+  // Remove active class from all category buttons
+  document.querySelectorAll(".btn-categories").forEach((btn) => {
+    btn.classList.remove("bg-[#0E7A81]", "text-white");
+    btn.classList.add("bg-transparent", "text-black");
+  });
+
+  // Add active class to the clicked button
+  const buttons = document.querySelectorAll(".btn-categories");
+  buttons.forEach((btn) => {
+    if (btn.textContent.trim() === categoryName) {
+      btn.classList.remove("bg-transparent", "text-black");
+      btn.classList.add("bg-[#0e79813e]", "border-[#0E7A81]", "rounded-full");
+    }
+  });
+
+  // Your existing logic (optional):
+  loadPetsByCategory(categoryName);
+}
+
+const buttonLike = (img, e) => {
+  const likeContainer = document.querySelector("#likeContainer");
+  likeContainer.innerHTML += `<img src="${img}" alt="" />`;
+
+  // 0e798177
+  // buttonLike
 };
 
 const showCategories = (categories) => {
   categories.forEach((category) => {
-    document.querySelector("#categories").innerHTML += `    <div
-                    class="flex btn-categories items-center space-x-4 px-20 py-10 bg-transparent btn border-[#0E7A81] hover:bg-[#0e79813e] hover:border-[#0E7A81] hover:rounded-full ">
-                    <img class="w-10" src="${category.category_icon}" alt="${category.category}">
+    document.querySelector("#categories").innerHTML += ` 
+       <button onclick="buttonCategory('${category.category}')"
+                    class="flex btn-categories items-center space-x-4 px-20 py-10 bg-transparent btn  hover:bg-[#0e79813e] hover:border-[#0E7A81] hover:rounded-full ">
+                    <img class="w-10" src="${category.category_icon}" alt="${category.category} ${category.id}">
                     <p class="text-xl font-bold">${category.category}</p>
-                </div>`;
+                </button>`;
   });
-};
-
-const loadAllPets = () => {
-  fetch("https://openapi.programming-hero.com/api/peddy/pets")
-    .then((res) => res.json())
-    .then((data) => showAllPets(data.pets))
-    .catch((error) => console.log(error));
 };
 
 const showAllPets = (pets) => {
-  pets.forEach((pet) => {
-    document.querySelector(
-      "#pets"
-    ).innerHTML += `<div class="flex flex-col border-[#5A5A5A] border  rounded-2xl p-5 space-y-6">
-                            <img class="rounded-2xl" src="${pet.image}" alt="">
+  pets != ""
+    ? pets.forEach((pet) => {
+        petContainer.innerHTML += `<div class="flex flex-col border-[#5A5A5A] border  rounded-2xl p-5 space-y-6">
+                             <img class="rounded-2xl" src="${pet.image}" alt="">
 
-                            <h3 class="text-xl font-bold text-left">${pet.pet_name}</h3>
-                            <div class="border-b-2 border-[#13131349] space-y-2">
-                                <div class="flex space-x-4">
-                                    <img src="./images/breed.png" alt="Breed">
-                                    <p>Breed: ${pet.breed} Golder retriever</p>
-                                </div>
+                           <h3 class="text-xl font-bold text-left">${pet.pet_name}</h3>
+                        <div class="border-b-2 border-[#13131349] space-y-2">
+                          <div class="flex space-x-4">
+                              <img src="./images/breed.png" alt="Breed">
+                               <p>Breed: ${pet.breed} Golder retriever</p>
+                           </div>
 
 
-                                <div class="flex space-x-4">
-                                    <img src="./images/dob.png" alt="Breed">
-                                    <p>Birth: ${pet.date_of_birth} </p>
-                                </div>
+                          <div class="flex space-x-4">
+                              <img src="./images/dob.png" alt="Breed">
+                              <p>Birth: ${pet.date_of_birth} </p>
+                           </div>
 
-                                <div class="flex space-x-4">
-                                    <img src="./images/gender.png" alt="Breed">
-                                    <p>Gender: ${pet.gender} </p>
-                                </div>
+                          <div class="flex space-x-4">
+                              <img src="./images/gender.png" alt="Breed">
+                                <p>Gender: ${pet.gender} </p>
+                           </div>
 
-                                <div class="flex space-x-4">
-                                    <img src="./images/price.png" alt="Breed">
-                                    <p>Price: ${pet.price} </p>
-                                </div>
+                           <div class="flex space-x-4">
+                               <img src="./images/price.png" alt="Breed">
+                                <p>Price: ${pet.price} </p>
                             </div>
-                            <div class="flex justify-between">
-                                <div class="btn border-[#0e798135] p-4">
-                                    <img src="./images/like.png" alt="Like">
-                                </div>
-                                <button class="btn text-xl text-[#0E7A81] border-[#0e798135] p-4">
-                                    Adopt
-                                </button>
-                                <button class="btn text-xl text-[#0E7A81] border-[#0e798135] p-4">
-                                    Details
-                                </button>
-                            </div>
-                        </div> `;
-  });
+                        </div>
+                        <div class="flex justify-between">
+                            <div  onclick="buttonLike('${pet.image}')" class="btn buttonLike border-[#0e798135]  p-4">
+                               <img src="./images/like.png" alt="Like">
+                           </div>
+                          <button class="btn text-xl text-[#0E7A81] border-[#0e798135] p-4">
+                              Adopt
+                          </button>
+                          <button onclick="my_modal_5.showModal()" class="btn text-xl text-[#0E7A81] border-[#0e798135] p-4">
+                               Details
+                           </button>
+                       </div>
+                   </div>
+
+              `;
+      })
+    : (petContainer.innerHTML += `<div class="grid col-span-4 items-center justify-center"><img  src="../images/error.webp" alt="" /></div>`);
 };
-
 loadCategories();
 loadAllPets();
-
-const btnCategories = document.querySelectorAll(".btn-categories");
-
-btnCategories.forEach((btnCategory) => {
-    btnCategory.addEventListener('click',()=>{
-        console.log("object");
-    })
-});

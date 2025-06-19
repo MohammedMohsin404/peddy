@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body>
+<body class="transition">
     <header class="container mx-auto text-[#131313]">
         <div class="navbar bg-base-100 ">
             <div class="navbar-start">
@@ -87,30 +87,35 @@
             <div>
                 <div class="flex justify-between">
                     <h3 class="text-2xl font-bold">Best Deal For you</h3>
-                    <button class="btn bg-[#0E7A81] text-white rounded-xl">Sort by Price</button>
+                    <button id="sortByPrice" class="btn bg-[#0E7A81] text-white rounded-xl">Sort by Price</button>
 
                 </div>
 
                 <div class="grid lg:grid-cols-5  gap-4 my-8">
                     <div id="pets" class="col-span-4 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-4 my-8">
-                        
-          
+
+                        <div id="skeleton" class="flex  flex-col gap-4 hidden">
+                            <div class="skeleton h-32 w-full"></div>
+                            <div class="skeleton h-4 w-28"></div>
+                            <div class="skeleton h-4 w-full"></div>
+                            <div class="skeleton h-4 w-full"></div>
+                        </div>
+
+
 
                     </div>
-                    <div class="hidden lg:grid lg:col-span-1 border-[#5A5A5A] border  rounded-2xl p-5  lg:grid-cols-2 gap-4">
+
+                    <div class="h-full rounded-2xl border p-4  my-8">
+                        <div id="likeContainer" class=" grid lg:grid-cols-2 gap-4 ">
+
+                            <!-- <img class="" src="./images/mister.png" alt=""> -->
                       
-                            <img src="./images/mister.png" alt="">
-                            <img src="./images/mister.png" alt="">
-                            <img src="./images/mister.png" alt="">
-                        
-                            <img src="./images/mister.png" alt="">
-                            <img src="./images/mister.png" alt="">
-                            <img src="./images/mister.png" alt="">
-                        
+
+
+
+                        </div>
                     </div>
 
-                    
-                    
 
                 </div>
             </div>
