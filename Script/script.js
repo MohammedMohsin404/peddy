@@ -31,7 +31,7 @@ console.log("Js Connected");
 
 const skeleton = document.querySelector("#skeleton");
 const petContainer = document.querySelector("#pets");
-
+let allPets =[]
 skeleton.classList.remove("hidden");
 
 const loadAllPets = () => {
@@ -39,7 +39,7 @@ const loadAllPets = () => {
     skeleton.classList.add("hidden");
     fetch("https://openapi.programming-hero.com/api/peddy/pets")
       .then((res) => res.json())
-      .then((data) => showAllPets(data.pets))
+      .then((data) => {allPets=data.pets, showAllPets(allPets)})
       .catch((error) => console.log(error));
   }, 2000);
 };
@@ -63,12 +63,12 @@ const loadPetsByCategory = (categoryName) => {
       `https://openapi.programming-hero.com/api/peddy/category/${categoryName}`
     )
       .then((res) => res.json())
-      .then((data) => showAllPets(data.data))
+       .then((data) => {allPets = data.data, showAllPets(allPets)})
       .catch((error) => console.log(error));
   }, 2000);
 };
 
-function buttonCategory(categoryName) {
+const buttonCategory = (categoryName)=> {
   // Remove active class from all category buttons
   document.querySelectorAll(".btn-categories").forEach((btn) => {
     btn.classList.remove("bg-[#0E7A81]", "text-white");
@@ -88,12 +88,10 @@ function buttonCategory(categoryName) {
   loadPetsByCategory(categoryName);
 }
 
-const buttonLike = (img, e) => {
+const buttonLike = (img) => {
   const likeContainer = document.querySelector("#likeContainer");
   likeContainer.innerHTML += `<img src="${img}" alt="" />`;
 
-  // 0e798177
-  // buttonLike
 };
 
 const showCategories = (categories) => {
@@ -167,7 +165,19 @@ const showPetDetails = async (id) => {
   }
 };
 
+const sortByPrice = () => {
+  const sortedPets = [...allPets].sort((a, b) => a.price - b.price);
+   petContainer.innerHTML =""
+  showAllPets(sortedPets);
+};
+
+// Add event listener to sort button
+document.getElementById('button-sort').addEventListener('click', sortByPrice);
+
 const showAllPets = (pets) => {
+
+    console.log(pets);
+      
   pets != ""
     ? pets.forEach((pet) => {
         petContainer.innerHTML += `<div class="flex flex-col border-[#5A5A5A] border  rounded-2xl p-5 space-y-6">
