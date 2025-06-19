@@ -107,6 +107,66 @@ const showCategories = (categories) => {
   });
 };
 
+const showPetDetails = async (id) => {
+  const modal = document.getElementById("my_modal_5");
+  const modalContent = document.getElementById("modal_content");
+
+  try {
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/peddy/pet/${id}`
+    );
+    const data = await res.json();
+    const pet = data.petData;
+
+    modalContent.innerHTML = `
+     <div class="flex flex-col  rounded-2xl  space-y-6">
+                             <img class="rounded-2xl" src="${pet.image}" alt="">
+
+                           <h3 class="text-xl font-bold text-left">${pet.pet_name}</h3>
+                        <div class="flex space-x-32 border-[#13131349] ">
+                        <div class="space-y-2">  
+                        <div class="flex space-x-4">
+                              <img src="./images/breed.png" alt="Breed">
+                               <p>Breed: ${pet.breed} </p>
+                           </div>
+                                 <div class="flex space-x-4">
+                              <img src="./images/gender.png" alt="Breed">
+                                <p>Gender: ${pet.gender} </p>
+                           </div>
+                          <div class="flex space-x-4">
+                              <img src="./images/gender.png" alt="Breed">
+                                <p>Vaccinated Status: ${pet.vaccinated_status} </p>
+                           </div>
+                           </div>
+<div class="space-y-2">      <div class="flex space-x-4">
+                              <img src="./images/dob.png" alt="Breed">
+                              <p>Birth: ${pet.date_of_birth} </p>
+                           </div>
+
+                    
+
+                           <div class="flex space-x-4">
+                               <img src="./images/price.png" alt="Breed">
+                                <p>Price: ${pet.price} </p>
+                            </div>
+                        </div>
+
+                    
+                        </div>
+                            <h4 class="text-left"> Details Information </h4>
+                        <p class="text-basic text-justify">${pet.pet_details}</p>
+
+                    
+    `;
+
+    modal.showModal(); // Show the DaisyUI modal
+  } catch (error) {
+    modalContent.innerHTML = `<p class="text-red-500">Failed to load pet details.</p>`;
+    modal.showModal();
+    console.error(error);
+  }
+};
+
 const showAllPets = (pets) => {
   pets != ""
     ? pets.forEach((pet) => {
@@ -143,7 +203,7 @@ const showAllPets = (pets) => {
                           <button class="btn text-xl text-[#0E7A81] border-[#0e798135] p-4">
                               Adopt
                           </button>
-                          <button onclick="my_modal_5.showModal()" class="btn text-xl text-[#0E7A81] border-[#0e798135] p-4">
+                          <button onclick="showPetDetails(${pet.petId})" class="btn text-xl text-[#0E7A81] border-[#0e798135] p-4">
                                Details
                            </button>
                        </div>
