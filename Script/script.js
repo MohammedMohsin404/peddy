@@ -174,7 +174,8 @@ const showPetDetails = async (id) => {
 };
 
 const sortByPrice = () => {
-  const sortedPets = [...allPets].sort((a, b) => a.price - b.price);
+  const sortedPets = [...allPets].sort((a, b) => b.price - a.price); // descending order
+
   petContainer.innerHTML = "";
   showAllPets(sortedPets);
 };
