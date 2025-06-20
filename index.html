@@ -5,10 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peddy</title>
-
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
     <!-- Daisy UI -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+    </style>
+
 </head>
 
 <body class="transition">
@@ -36,20 +43,21 @@
                         <li><a>Item 3</a></li>
                     </ul>
                 </div>
-                <a class="btn btn-ghost text-xl"><img class="mr-2" src="./images/logo.webp" alt=""> Peddy</a>
+                <a href="https://mohammedmohsin404.github.io/peddy " class="btn btn-ghost text-xl"><img class="mr-2"
+                        src="./images/logo.webp" alt="Peddy"> Peddy</a>
             </div>
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal px-1">
-                    <li><a>Home</a></li>
-                    <li><a>Shop</a></li>
-                    <li><a>Contact</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#footer">Contact</a></li>
 
 
                 </ul>
             </div>
             <div class="navbar-end">
                 <a class="btn rounded-full border-[#0E7A81] bg-transparent-transparent"><img class="w-5 "
-                        src="./images/user.png" alt=""></a>
+                        src="./images/user.png" alt="User"></a>
             </div>
         </div>
     </header>
@@ -61,9 +69,9 @@
             </h1>
             <p class="text-base ">It is a long established fact that a reader will be distracted by the readable content
                 of a page when looking <br> at its layout. The point of using Lorem Ipsum is that it has a.</p>
-            <button class="text-white text-xl btn rounded-xl bg-[#0E7A81]">View More</button>
+            <a href="#shop" class="text-white text-xl btn rounded-xl bg-[#0E7A81]">View More</a>
 
-            <img class="mx-auto" src="./images/pet.webp" alt="">
+            <img class="mx-auto" src="./images/pet.webp" alt="Pet">
         </section>
         <!-- Adopt  -->
         <section class="mt-14 space-y-8 text-center">
@@ -91,7 +99,7 @@
 
                 </div>
 
-                <div class="grid lg:grid-cols-5  gap-4 my-8">
+                <div id="shop" class="grid lg:grid-cols-5  gap-4 my-8">
                     <div id="pets" class="col-span-4 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-4 my-8">
                         <!-- Modal -->
                         <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
@@ -100,9 +108,10 @@
                                 <div id="modal_content" class="py-4">
                                     <!-- Content will go here -->
                                 </div>
-                                <div class="modal-action flex w-full justify-center">
-                                    <form method="dialog flex w-full ">
-                                        <button class="btn ">Close</button>
+                                <div class="modal-action">
+                                    <form method="dialog">
+                                        <!-- if there is a button in form, it will close the modal -->
+                                        <button class="btn">Close</button>
                                     </form>
                                 </div>
                             </div>
@@ -138,11 +147,11 @@
 
     </main>
 
-    <footer class="bg-[#131313] ">
+    <footer id="footer" class="bg-[#131313] ">
         <div class="container mx-auto py-24">
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-16">
                 <div class="space-y-6 mx-auto">
-                    <a class="btn btn-ghost text-2xl text-white"><img class="mr-2" src="./images/logo.webp" alt="">
+                    <a class="btn btn-ghost text-2xl text-white"><img class="mr-2" src="./images/logo.webp" alt="Peddy">
                         Peddy</a>
                     <p class="text-base text-white">Location: av. Washington 165, NY CA 54003 <br>
                         Phone: +31 85 964 47 25 <br>
@@ -150,10 +159,10 @@
                         Openings hours: 9.00 AM - 5.00 PM</p>
 
                     <div class="flex space-x-8 ">
-                        <a href=""><img src="./images/facebook.png" alt=""></a>
-                        <a href=""><img src="./images/x.png" alt=""></a>
-                        <a href=""><img src="./images/youtube.png" alt=""></a>
-                        <a href=""><img src="./images/insta.png" alt=""></a>
+                        <a href="https://www.facebook.com/"><img src="./images/facebook.png" alt="Facebook"></a>
+                        <a href="https://x.com/"><img src="./images/x.png" alt="X"></a>
+                        <a href="https://www.youtube.com/"><img src="./images/youtube.png" alt="Youtube"></a>
+                        <a href="https://www.instagram.com/"><img src="./images/insta.png" alt="Instagram"></a>
                     </div>
                 </div>
                 <div class="space-y-8 text-center md:text-left">

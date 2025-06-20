@@ -31,7 +31,7 @@ console.log("Js Connected");
 
 const skeleton = document.querySelector("#skeleton");
 const petContainer = document.querySelector("#pets");
-let allPets =[]
+let allPets = [];
 skeleton.classList.remove("hidden");
 
 const loadAllPets = () => {
@@ -39,7 +39,9 @@ const loadAllPets = () => {
     skeleton.classList.add("hidden");
     fetch("https://openapi.programming-hero.com/api/peddy/pets")
       .then((res) => res.json())
-      .then((data) => {allPets=data.pets, showAllPets(allPets)})
+      .then((data) => {
+        (allPets = data.pets), showAllPets(allPets);
+      })
       .catch((error) => console.log(error));
   }, 2000);
 };
@@ -53,28 +55,35 @@ const loadCategories = () => {
 };
 
 const loadPetsByCategory = (categoryName) => {
-  petContainer.innerHTML = ` `;
+  // Clear existing pets
+  petContainer.innerHTML = '';
+
+  // Show skeleton
   skeleton.classList.remove("hidden");
 
+  // Wait 2 seconds, then fetch and render
   setTimeout(() => {
-    petContainer.innerHTML = ` `;
-    skeleton.classList.add("hidden");
-    fetch(
-      `https://openapi.programming-hero.com/api/peddy/category/${categoryName}`
-    )
+    fetch(`https://openapi.programming-hero.com/api/peddy/category/${categoryName}`)
       .then((res) => res.json())
-       .then((data) => {allPets = data.data, showAllPets(allPets)})
-      .catch((error) => console.log(error));
+      .then((data) => {
+        skeleton.classList.add("hidden"); // Hide skeleton after loading
+        allPets = data.data;
+        showAllPets(allPets); // Show pets
+      })
+      .catch((error) => {
+        skeleton.classList.add("hidden");
+        console.error("Error fetching pets:", error);
+      });
   }, 2000);
 };
 
-const buttonCategory = (categoryName)=> {
+const buttonCategory = (categoryName) => {
   // Remove active class from all category buttons
   document.querySelectorAll(".btn-categories").forEach((btn) => {
     btn.classList.remove("bg-[#0E7A81]", "text-white");
     btn.classList.add("bg-transparent", "text-black");
   });
-
+  skeleton.classList.remove("hidden");
   // Add active class to the clicked button
   const buttons = document.querySelectorAll(".btn-categories");
   buttons.forEach((btn) => {
@@ -86,12 +95,11 @@ const buttonCategory = (categoryName)=> {
 
   // Your existing logic (optional):
   loadPetsByCategory(categoryName);
-}
+};
 
 const buttonLike = (img) => {
   const likeContainer = document.querySelector("#likeContainer");
-  likeContainer.innerHTML += `<img src="${img}" alt="" />`;
-
+  likeContainer.innerHTML += `<img src="${img}" alt="Like" />`;
 };
 
 const showCategories = (categories) => {
@@ -118,33 +126,33 @@ const showPetDetails = async (id) => {
 
     modalContent.innerHTML = `
      <div class="flex flex-col  rounded-2xl  space-y-6">
-                             <img class="rounded-2xl" src="${pet.image}" alt="">
+                             <img class="rounded-2xl" src="${pet.image}" alt="${pet.pet_name}">
 
                            <h3 class="text-xl font-bold text-left">${pet.pet_name}</h3>
                         <div class="flex space-x-32 border-[#13131349] ">
                         <div class="space-y-2">  
                         <div class="flex space-x-4">
-                              <img src="./images/breed.png" alt="Breed">
+                              <img src="./images/breed.png" alt="${pet.breed} ">
                                <p>Breed: ${pet.breed} </p>
                            </div>
                                  <div class="flex space-x-4">
-                              <img src="./images/gender.png" alt="Breed">
+                              <img src="./images/gender.png" alt="${pet.gender}">
                                 <p>Gender: ${pet.gender} </p>
                            </div>
                           <div class="flex space-x-4">
-                              <img src="./images/gender.png" alt="Breed">
+                              <img src="./images/gender.png" alt="${pet.vaccinated_status}">
                                 <p>Vaccinated Status: ${pet.vaccinated_status} </p>
                            </div>
                            </div>
 <div class="space-y-2">      <div class="flex space-x-4">
-                              <img src="./images/dob.png" alt="Breed">
+                              <img src="./images/dob.png" alt="${pet.date_of_birth}">
                               <p>Birth: ${pet.date_of_birth} </p>
                            </div>
 
                     
 
                            <div class="flex space-x-4">
-                               <img src="./images/price.png" alt="Breed">
+                               <img src="./images/price.png" alt="${pet.price}">
                                 <p>Price: ${pet.price} </p>
                             </div>
                         </div>
@@ -167,53 +175,63 @@ const showPetDetails = async (id) => {
 
 const sortByPrice = () => {
   const sortedPets = [...allPets].sort((a, b) => a.price - b.price);
-   petContainer.innerHTML =""
+  petContainer.innerHTML = "";
   showAllPets(sortedPets);
 };
 
 // Add event listener to sort button
-document.getElementById('button-sort').addEventListener('click', sortByPrice);
+document.getElementById("button-sort").addEventListener("click", sortByPrice);
 
 const showAllPets = (pets) => {
-
-    console.log(pets);
-      
   pets != ""
     ? pets.forEach((pet) => {
         petContainer.innerHTML += `<div class="flex flex-col border-[#5A5A5A] border  rounded-2xl p-5 space-y-6">
-                             <img class="rounded-2xl" src="${pet.image}" alt="">
+                             <img class="rounded-2xl" src="${pet.image}" alt="${
+          pet.pet_name
+        }">
 
-                           <h3 class="text-xl font-bold text-left">${pet.pet_name}</h3>
+                           <h3 class="text-xl font-bold text-left">
+                           ${
+                             pet.pet_name == "null" ? "Not Found" : pet.pet_name
+                           }</h3>
                         <div class="border-b-2 border-[#13131349] space-y-2">
                           <div class="flex space-x-4">
-                              <img src="./images/breed.png" alt="Breed">
+                              <img src="./images/breed.png" alt="${pet.breed}">
                                <p>Breed: ${pet.breed} Golder retriever</p>
                            </div>
 
 
                           <div class="flex space-x-4">
-                              <img src="./images/dob.png" alt="Breed">
+                              <img src="./images/dob.png" alt="${
+                                pet.date_of_birth
+                              }">
                               <p>Birth: ${pet.date_of_birth} </p>
                            </div>
 
                           <div class="flex space-x-4">
-                              <img src="./images/gender.png" alt="Breed">
+                              <img src="./images/gender.png" alt="${
+                                pet.gender
+                              }">
                                 <p>Gender: ${pet.gender} </p>
                            </div>
 
                            <div class="flex space-x-4">
-                               <img src="./images/price.png" alt="Breed">
+                               <img src="./images/price.png" alt="${pet.price}">
                                 <p>Price: ${pet.price} </p>
                             </div>
                         </div>
                         <div class="flex justify-between">
-                            <div  onclick="buttonLike('${pet.image}')" class="btn buttonLike border-[#0e798135]  p-4">
+                            <div  onclick="buttonLike('${
+                              pet.image
+                            }')" class="btn buttonLike border-[#0e798135]  p-4">
                                <img src="./images/like.png" alt="Like">
                            </div>
                           <button class="btn text-xl text-[#0E7A81] border-[#0e798135] p-4">
                               Adopt
                           </button>
-                          <button onclick="showPetDetails(${pet.petId})" class="btn text-xl text-[#0E7A81] border-[#0e798135] p-4">
+                          <button onclick="showPetDetails(${
+                            pet.petId
+                          })" class="btn text-xl text-[#0E7A81] border-[#0e798135] p-4">
                                Details
                            </button>
                        </div>
@@ -221,7 +239,7 @@ const showAllPets = (pets) => {
 
               `;
       })
-    : (petContainer.innerHTML += `<div class="grid col-span-4 items-center justify-center"><img  src="../images/error.webp" alt="" /></div>`);
+    : (petContainer.innerHTML += `<div class="grid col-span-4 items-center justify-center"><img  src="../images/error.webp" alt="Error" /></div>`);
 };
 loadCategories();
 loadAllPets();
